@@ -1,0 +1,11 @@
+# Ignore Terraform local state and backups
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Ignore sensitive variable files
+*.tfvars
+
+# Ignore Azure CLI local logs/state
+.azure/
