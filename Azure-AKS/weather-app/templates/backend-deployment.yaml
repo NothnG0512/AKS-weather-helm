@@ -6,7 +6,7 @@ metadata:
   labels:
     app: weather
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: weather
