@@ -41,8 +41,11 @@ jobs:
           cluster-name: ${{ secrets.AZURE_AKS_NAME }}
 
       - name: Helm Deploy
-        run: |
+        run: 
+          ls -R
+          kubectl get nodes
           helm upgrade --install weather-api ./weather-app \
             --namespace dev-environment --create-namespace \
             --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
             --set image.tag=${{ github.sha }}
+            --debug
