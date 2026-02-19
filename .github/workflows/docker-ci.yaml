@@ -41,7 +41,7 @@ jobs:
           cluster-name: ${{ secrets.AZURE_AKS_NAME }}
 
       - name: Helm Deploy
-        run: 
+        run: |
           kubectl create namespace dev-environment --dry-run=client -o yaml | kubectl apply -f -
           helm upgrade --install weather-api ./weather-app \
             --namespace dev-environment \
