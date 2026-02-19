@@ -46,5 +46,5 @@ jobs:
           helm upgrade --install weather-api ./weather-app \
             --namespace dev-environment \
             --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
-            --set image.tag=${{ github.sha }}
+            --set image.tag=${{ github.sha }} \
             --debug
