@@ -42,10 +42,9 @@ jobs:
 
       - name: Helm Deploy
         run: 
-          ls -R
-          kubectl get nodes
+          kubectl create namespace dev-environment --dry-run=client -o yaml | kubectl apply -f -
           helm upgrade --install weather-api ./weather-app \
-            --namespace dev-environment --create-namespace \
+            --namespace dev-environment \
             --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
             --set image.tag=${{ github.sha }}
             --debug
