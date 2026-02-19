@@ -21,7 +21,7 @@ spec:
           claimName: weather-db-pvc
       containers:
       - name: api-container
-        image: nginx
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         resources:
           requests:
             memory: "64Mi"
