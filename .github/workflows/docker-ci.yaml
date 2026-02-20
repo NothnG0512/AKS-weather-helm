@@ -40,11 +40,12 @@ jobs:
           resource-group: ${{ secrets.AZURE_RG }}
           cluster-name: ${{ secrets.AZURE_AKS_NAME }}
 
-      - name: Helm Deploy
-        run: |
-          kubectl create namespace dev-environment --dry-run=client -o yaml | kubectl apply -f -
-          helm upgrade --install weather-api ./weather-app \
-            --namespace dev-environment \
-            --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
-            --set image.tag=${{ github.sha }} \
-            --debug
+#Commenting below Helm deploy for implementing ArgoCd
+#      - name: Helm Deploy
+#        run: |
+#          kubectl create namespace dev-environment --dry-run=client -o yaml | kubectl apply -f -
+#          helm upgrade --install weather-api ./weather-app \
+#            --namespace dev-environment \
+#            --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
+#            --set image.tag=${{ github.sha }} \
+#            --debug
