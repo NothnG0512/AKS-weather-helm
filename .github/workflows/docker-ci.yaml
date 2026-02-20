@@ -53,8 +53,8 @@ jobs:
         run: |
           #Using 'sed' to find the tag line and replace the value
           sed -i "s/tag: .*/tag: \"${{ github.sha }}\"/" ./weather-app/values.yaml
-        
-        # Configure Git
+          
+       
           git config --global user.name "Anuj Github Action bot"
           git config --global user.email "anujpal4448@gmail.com"
 
