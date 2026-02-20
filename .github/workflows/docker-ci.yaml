@@ -1,4 +1,6 @@
 name: Build and Push to ACR
+permissions:
+  contents: write
 
 on:
   push:
