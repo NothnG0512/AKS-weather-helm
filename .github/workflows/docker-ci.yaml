@@ -51,7 +51,7 @@ jobs:
 #            --debug
       - name: Update Image Tag in values.yaml
         run: |
-        # Using 'sed' to find the tag line and replace the value
+          #Using 'sed' to find the tag line and replace the value
           sed -i "s/tag: .*/tag: \"${{ github.sha }}\"/" ./weather-app/values.yaml
         
         # Configure Git
