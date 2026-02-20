@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Add a custom message to your "Weather App" homepage
-RUN echo "<h1>Welcome to the Weather API - Version 1.0</h1>" > /usr/share/nginx/html/index.html
+RUN echo "<h1>Welcome to the Weather API - Version 2.0 Powered by GitOps</h1>" > /usr/share/nginx/html/index.html
 
 # Tell the container to listen on port 80
 EXPOSE 80

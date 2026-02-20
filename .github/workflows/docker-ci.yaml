@@ -49,3 +49,15 @@ jobs:
 #            --set image.repository=${{ secrets.ACR_LOGIN_SERVER }}/weather-api \
 #            --set image.tag=${{ github.sha }} \
 #            --debug
+      - name: Update Image Tag in values.yaml
+        run: |
+        # Using 'sed' to find the tag line and replace the value
+          sed -i "s/tag: .*/tag: \"${{ github.sha }}\"/" ./weather-app/values.yaml
+        
+        # Configure Git
+          git config --global user.name "Anuj Github Action bot"
+          git config --global user.email "anujpal4448@gmail.com"
+
+          git add ./weather-app/values.yaml
+          git commit -m "chore: update image tag to ${{ github.sha }} [skip ci]"
+          git push

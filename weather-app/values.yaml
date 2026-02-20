@@ -7,3 +7,5 @@ storage:
 image:
   repository: weatherappregistry2026.azurecr.io/weather-api
   tag: "888008cba57f3d3d89ab20da89b912d70961fc27"
+
+tag: ${{ github.sha }}
