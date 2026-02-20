@@ -6,6 +6,6 @@ storage:
   size: 1Gi
 image:
   repository: weatherappregistry2026.azurecr.io/weather-api
-  tag: "888008cba57f3d3d89ab20da89b912d70961fc27"
+  tag: "1ceaf32fa007f09a16b802614c85c8551a4cb172"
 
-tag: ${{ github.sha }}
+tag: "1ceaf32fa007f09a16b802614c85c8551a4cb172"
