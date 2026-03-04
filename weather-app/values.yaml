@@ -7,13 +7,13 @@ storage:
 image:
   repository: weatherappregistry2026.azurecr.io/weather-api
 <<<<<<< HEAD
-  tag: "624e10361801973673f5a133127f56403600d96e"
+  tag: "352b7c8fedc3ddab2695988fe1e34f1a5a3b4e1a"
 =======
 <<<<<<< HEAD
-  tag: "7b115ddce99f003e7eeec6e8a9b1a3445fd2b673"
+  tag: "352b7c8fedc3ddab2695988fe1e34f1a5a3b4e1a"
 =======
-  tag: "7b115ddce99f003e7eeec6e8a9b1a3445fd2b673"
+  tag: "352b7c8fedc3ddab2695988fe1e34f1a5a3b4e1a"
 >>>>>>> 4630a14596c12076c5a2f531ac5471ad5ac06c59
 >>>>>>> 8b948e34bc7afd251b87e1c15ed4be8e99b8f267
 
-tag: "7b115ddce99f003e7eeec6e8a9b1a3445fd2b673"
+tag: "352b7c8fedc3ddab2695988fe1e34f1a5a3b4e1a"
