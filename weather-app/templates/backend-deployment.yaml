@@ -15,10 +15,19 @@ spec:
       labels:
         app: weather
     spec:
+      serviceAccountName: weather-sa
+
       volumes:
       - name: storage-volume
         persistentVolumeClaim:
           claimName: weather-db-pvc
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "weather-kv-secrets"  
+
       containers:
       - name: api-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -44,6 +53,10 @@ spec:
         volumeMounts:
         - name: storage-volume
           mountPath: /data/db
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets"
+          readOnly: true
+          
         ports:
         - containerPort: 80
         env:
