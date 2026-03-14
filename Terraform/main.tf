@@ -4,11 +4,11 @@ resource "azurerm_resource_group" "rg" {
   name     = "aks-mission-rg"
   location = "westus2" # You can change this to your preferred region
 }
-resource "random_string" "suffix" {
+/*resource "random_string" "suffix" {
   length = 5
   special = false
   upper = false
-}
+}  */
 
 # 2. Create the AKS Cluster
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -19,13 +19,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name       = "default"
-    node_count = 1            # Starting small to save costs
+    node_count = 1 # Starting small to save costs
     vm_size    = "Standard_B2s_v2"
   }
 
+   /* day 15 revert
   key_vault_secrets_provider {
     secret_rotation_enabled = true
-  }
+  } */
 
   oidc_issuer_enabled = true
   workload_identity_enabled = true
@@ -41,14 +42,15 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 resource "azurerm_container_registry" "acr" {
-  name = "weatherappregistry2026"
+  name                = "weatherappregistry2026"
   resource_group_name = azurerm_resource_group.rg.name
-  location = azurerm_resource_group.rg.location 
-  sku = "Standard"
-  admin_enabled = true
+  location            = azurerm_resource_group.rg.location
+  sku                 = "Standard"
+  admin_enabled       = true
 
 }
 
+/*     Day15 revert
 resource "azurerm_key_vault" "vault" {
   name                = "kv-weather-gitops-${random_string.suffix.result}"
   location            = azurerm_resource_group.rg.location
@@ -78,7 +80,7 @@ resource "azurerm_federated_identity_credential" "weather_fed" {
   issuer              = azurerm_kubernetes_cluster.aks.oidc_issuer_url
   parent_id           = azurerm_user_assigned_identity.weather_identity.id
   subject             = "system:serviceaccount:dev-environment:weather-sa"
-}
-output "acr_login_server"{
+}      */
+output "acr_login_server" {
   value = azurerm_container_registry.acr.login_server
 } 
