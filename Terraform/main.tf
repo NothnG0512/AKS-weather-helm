@@ -9,6 +9,12 @@ resource "azurerm_resource_group" "rg" {
   special = false
   upper = false
 }  */
+# 1. Creating the Azure Monitor Workspace (The Managed Prometheus Database)
+resource "azurerm_monitor_workspace" "prometheus" {
+  name                = "prom-weather-app"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+}
 
 # 2. Create the AKS Cluster
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -27,6 +33,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   key_vault_secrets_provider {
     secret_rotation_enabled = true
   } */
+  oms_agent {
+    log_analytics_workspace_id = azurerm_log_analytics_workspace.insights.id
+  }
+
+  monitor_metrics {
+  }
 
   oidc_issuer_enabled = true
   workload_identity_enabled = true
@@ -48,6 +60,25 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Standard"
   admin_enabled       = true
 
+}
+resource "azurerm_dashboard_grafana" "grafana" {
+  name                              = "grafana-weather-app"
+  resource_group_name               = azurerm_resource_group.rg.name
+  location                          = azurerm_resource_group.rg.location
+  api_key_enabled                   = true
+  deterministic_outbound_ip_enabled = false
+  public_network_access_enabled     = true
+  grafana_major_version             = 12
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
+resource "azurerm_log_analytics_workspace" "insights" {
+  name                = "la-weather-app"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
 }
 
 /*     Day15 revert
