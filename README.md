@@ -1,10 +1,10 @@
-**High-Availability Weather Platform on Azure (AKS)**
+**<h2>High-Availability Weather Platform on Azure (AKS)</h2>**
 A Full-Stack DevSecOps Implementation using GitOps, IaC, and Cloud-Native Security
 
 This repository contains the end-to-end engineering of a containerized Weather API. The project demonstrates a production-ready infrastructure lifecycle—from automated provisioning with Terraform to continuous delivery with ArgoCD, secured via Azure Key Vault and monitored through Managed Prometheus/Grafana.
 
 
-🏗️ **System Architecture**
+**<h3>🏗️ **System Architecture</h3>**
 The platform is built on a modular, scalable architecture designed for resilience and security:
 
 **Orchestration:** Azure Kubernetes Service (**AKS**) with Managed Node Pools.
@@ -18,7 +18,8 @@ The platform is built on a modular, scalable architecture designed for resilienc
 **Observability:** Integrated Prometheus metrics and Grafana dashboards for cluster-wide visibility.
 
 
-**🛠️ Core Engineering Highlights**
+**<h3>🛠️ Core Engineering Highlights</h3>**
+
 **1. The GitOps Workflow (The "Push-to-Live" Engine)**
 I implemented a declarative CD pipeline that ensures the cluster state always matches the Git repository.
 
@@ -31,9 +32,9 @@ I implemented a declarative CD pipeline that ensures the cluster state always ma
 **2. Zero-Trust Secret Management**
 To eliminate the risk of hardcoded secrets, I transitioned from native Kubernetes Secrets to an integrated Vault solution:
 
-Technology: Azure Key Vault + Secrets Store CSI Driver.
+**Technology:** Azure Key Vault + Secrets Store CSI Driver.
 
-Implementation: Secrets are mounted as ephemeral volumes. I configured RBAC and Workload Identity to ensure that only authorized pods can access specific secret keys, following the principle of Least Privilege.
+**Implementation**: Secrets are mounted as ephemeral volumes. I configured RBAC and Workload Identity to ensure that only authorized pods can access specific secret keys, following the principle of Least Privilege.
 
 **3. Resilience & Chaos Engineering**
 The platform was stress-tested to ensure high availability:
@@ -43,7 +44,7 @@ Probes: Implemented Liveness and Readiness probes to ensure zero-downtime rollin
 Disaster Recovery: The entire environment can be destroyed and re-provisioned from a blank Azure account in <30 minutes using the Terraform state and ArgoCD application manifests.
 
 
-**📈 Observability & Monitoring**
+**<h3>📈 Observability & Monitoring</h3>**
 The cluster is monitored using Azure Managed Prometheus.
 
 **Dashboards:** Custom Grafana dashboards track Pod CPU/Memory, Ingress traffic, and Request Latency.
@@ -53,7 +54,7 @@ The cluster is monitored using Azure Managed Prometheus.
 
 
 
-**🚀 How to Replicate**
+**<h3>🚀 How to Replicate</h3>**
 Provision Infra: cd terraform && terraform apply
 
 Bootstrap GitOps: Apply the ArgoCD bootstrap manifest in /gitops-config.
@@ -62,7 +63,7 @@ Deploy: Push a code change to /src, and watch the automated rollout.
 
 
 
-**🛠️ Challenges Overcome**
+**<h3>🛠️ Challenges Overcome</h3>**
 **1. Solving the "Ghost Ingress" & Resource Drift**
 **The Problem**: After transitioning to ArgoCD, the cluster was stuck in a "Progressing" state due to a legacy Ingress resource that lacked a valid LoadBalancer IP. This "Ghost" resource prevented the application from ever reaching a "Healthy" status.
 
@@ -86,5 +87,6 @@ Engineering Takeaway: Gained expertise in designing CI/CD workflows that are "Lo
 
 
 
-Anuj Pal 
+<h3>Anuj Pal </h3>
+
 **DevOps & Infrastructure Engineer**
